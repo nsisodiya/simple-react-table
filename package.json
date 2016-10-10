@@ -1,0 +1,23 @@
+{
+  "name": "simple-react-table",
+  "version": "1.0.0",
+  "description": "Configuration driven Table using React and Material UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsisodiya/simple-react-table.git"
+  },
+  "keywords": [
+    "react",
+    "table"
+  ],
+  "author": "Narendra Sisodiya <narendra@narendrasisodiya.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nsisodiya/simple-react-table/issues"
+  },
+  "homepage": "https://github.com/nsisodiya/simple-react-table#readme"
+}
