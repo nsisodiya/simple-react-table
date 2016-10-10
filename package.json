@@ -4,7 +4,11 @@
   "description": "Configuration driven Table using React and Material UI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devServer": "webpack-dev-server --content-base ./dist/ --port 8101 --colors --history-api-fallback",
+    "generateDist": "npm prune && npm run getLatestPackages && npm install && webpack && git add dist",
+    "eslint": "eslint -c ./.eslintrc src",
+    "productionBuild": "cross-env NODE_ENV=production webpack --progress"
   },
   "repository": {
     "type": "git",

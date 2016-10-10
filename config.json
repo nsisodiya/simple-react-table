@@ -1,0 +1,7 @@
+{
+  "indexFilePath": "./src/index.js",
+  "esLintRCFilePath": "./.eslintrc",
+  "distFolderPath": "dist",
+  "liveReloadPort":36001,
+  "projectNameUMD":"SimpleReactTable"
+}
