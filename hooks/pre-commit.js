@@ -29,11 +29,6 @@ function runProcessAndExitOnError(pName, cmd) {
   });
 }
 
-//Step 2 - Run CSS Beautification
-
-(function () {
-  runProcessAndExitOnError("CSS Beautification", "node ./scripts/cssbeautify.js");
-})();
 (function () {
   runProcessAndExitOnError("ESLint", "npm run eslint");
 })();

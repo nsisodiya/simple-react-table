@@ -1,5 +1,4 @@
-import Table from "./components/Table/Table";
-
+import Table from "./Table";
 module.exports = {
   Table
 };

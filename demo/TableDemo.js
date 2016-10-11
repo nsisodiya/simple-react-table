@@ -1,13 +1,9 @@
 import React, {Component} from "react";
-import {Table} from "@hotelsoft/react-components";
-import Highlight from "react-syntax-highlight";
-import ReactJsonViewer from "react-json-viewer";
+import {Table} from "./../src/index";
 
 var tableExampleData = {
-  example1: {},
-  example2: {
-    extraHeaders:
-    [
+  example: {
+    extraHeaders: [
       {
         label: "Arrival Date",
         rowSpan: 2,
@@ -66,11 +62,7 @@ var tableExampleData = {
         },
         popover: {
           value: function () {
-            return <ReactJsonViewer json={{
-              name: "Prices",
-              company: "Hotelsoft",
-              likes: ["react", "js", "es6"]
-            }}/>;
+            return <h1>This is Sample Popover</h1>;
           },
           popoverProps: {
             title: "Popover",
@@ -88,16 +80,11 @@ var tableExampleData = {
         label: "lastDayPrice",
         tooltip: {
           value: function () {
-            return <ReactJsonViewer json={{
-              name: "Fruits",
-              company: "Hotelsoft",
-              likes: ["react", "js", "es6"]
-            }}/>;
+            return <h1>This is Sample Popover</h1>;
           },
           tooltipProps: {},
           overlayProps: {}
         }
-
       }
     ],
     data: [
@@ -123,15 +110,9 @@ class TableExample extends Component {
   }
 
   render() {
-    var four = 4;
     return (
       <div className={this.props.className} styleName="container">
-        <Highlight lang={"html"}
-          value={`var tableExampleData = ${JSON.stringify(tableExampleData, null, four)}`}/>
-        <Highlight lang={"html"}
-          value={"<Table {...tableExampleData.example2}/>"}/>
-        <Table {...tableExampleData.example2}/>
-        <PropTypesTable comp={Table} />
+        <Table {...tableExampleData.example}/>
       </div>
     );
   }
