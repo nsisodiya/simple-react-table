@@ -2,7 +2,7 @@
   "name": "simple-react-table",
   "version": "1.1.0",
   "description": "Configuration driven Table using React and Material UI",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "webpack-dev-server --content-base ./dist/ --port 8101 --colors --history-api-fallback",
