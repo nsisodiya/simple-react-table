@@ -1,8 +1,8 @@
 {
   "name": "simple-react-table",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Configuration driven Table using React and Material UI",
-  "main": "src/index.js",
+  "main": "dist/SimpleReactTable.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "webpack-dev-server --content-base ./dist/ --port 8101 --colors --history-api-fallback",
