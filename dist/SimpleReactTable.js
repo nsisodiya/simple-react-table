@@ -338,6 +338,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _materialUi = __webpack_require__(3);
 	
+	var _MaterialPopover = __webpack_require__(6);
+	
+	var _MaterialPopover2 = _interopRequireDefault(_MaterialPopover);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -437,18 +441,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            );
 	          } else if (_this2.props.popover !== null) {
 	            return _react2.default.createElement(
-	              "div",
-	              null,
-	              _this2.getData(),
-	              _react2.default.createElement(
-	                "span",
-	                null,
-	                _util2.default.iff(typeof _this2.props.popover.value === "function", function () {
-	                  return _this2.props.popover.value(_this2.props.data, _this2.props.dataRow, _this2.props.allData, _this2.props.columns, _this2.props.rowIndex);
-	                }, function () {
-	                  return _this2.props.popover.value;
-	                })
-	              )
+	              _MaterialPopover2.default,
+	              { style: _this2.props.popover.popoverProps.style, overlay: _react2.default.createElement(
+	                  "div",
+	                  null,
+	                  _util2.default.iff(typeof _this2.props.popover.value === "function", _this2.props.popover.value(_this2.props.data, _this2.props.dataRow, _this2.props.allData, _this2.props.columns, _this2.props.rowIndex), _this2.props.popover.value)
+	                ) },
+	              _this2.getData()
 	            );
 	          } else {
 	            return _this2.getData();
@@ -512,6 +511,103 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _materialUi = __webpack_require__(3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MaterialPopover = function (_Component) {
+	  _inherits(MaterialPopover, _Component);
+	
+	  function MaterialPopover(props) {
+	    _classCallCheck(this, MaterialPopover);
+	
+	    var _this = _possibleConstructorReturn(this, (MaterialPopover.__proto__ || Object.getPrototypeOf(MaterialPopover)).call(this, props));
+	
+	    _this.state = {
+	      open: false
+	    };
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    _this.handleRequestClose = _this.handleRequestClose.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(MaterialPopover, [{
+	    key: "handleClick",
+	    value: function handleClick(event) {
+	      // This prevents ghost click.
+	      event.preventDefault();
+	      this.setState({
+	        open: true,
+	        anchorEl: event.currentTarget
+	      });
+	    }
+	  }, {
+	    key: "handleRequestClose",
+	    value: function handleRequestClose() {
+	      this.setState({
+	        open: false
+	      });
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { onClick: this.handleClick },
+	        _react2.default.createElement(
+	          _materialUi.Popover,
+	          {
+	            open: this.state.open,
+	            anchorEl: this.state.anchorEl,
+	            anchorOrigin: this.props.anchorOrigin,
+	            targetOrigin: this.props.targetOrigin,
+	            onRequestClose: this.handleRequestClose,
+	            style: this.props.style
+	          },
+	          this.props.overlay
+	        ),
+	        this.props.children
+	      );
+	    }
+	  }]);
+	
+	  return MaterialPopover;
+	}(_react.Component);
+	
+	MaterialPopover.defaultProps = {
+	  anchorOrigin: { horizontal: "left", vertical: "bottom" },
+	  targetOrigin: { horizontal: "left", vertical: "top" }
+	};
+	MaterialPopover.propTypes = {
+	  overlay: _react2.default.PropTypes.any,
+	  anchorOrigin: _react2.default.PropTypes.object,
+	  targetOrigin: _react2.default.PropTypes.object,
+	  style: _react2.default.PropTypes.object
+	};
+	exports.default = MaterialPopover;
 
 /***/ }
 /******/ ])

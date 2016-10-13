@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import util from "./util.js";
 import {TableRowColumn} from "material-ui";
+import MaterialPopover from "./MaterialPopover";
 
 class CellComponent extends Component {
   constructor(props, context) {
@@ -77,20 +78,13 @@ class CellComponent extends Component {
                 }</span>
               </div>;
             } else if (this.props.popover !== null) {
-              return <div>
+              return <MaterialPopover style={this.props.popover.popoverProps.style} overlay={
+                  <div>
+                  {
+                    util.iff(typeof this.props.popover.value === "function", this.props.popover.value(this.props.data, this.props.dataRow, this.props.allData, this.props.columns, this.props.rowIndex), this.props.popover.value)
+                  }</div>}>
                 {this.getData()}
-                  <span>{
-                    util.iff(typeof this.props.popover.value === "function",
-                      ()=> {
-                        return this.props.popover.value(this.props.data, this.props.dataRow, this.props.allData,
-                          this.props.columns, this.props.rowIndex);
-                      },
-                      ()=> {
-                        return this.props.popover.value;
-                      }
-                    )
-                  }</span>
-              </div>;
+              </MaterialPopover>;
             } else {
               return this.getData();
             }
