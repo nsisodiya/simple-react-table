@@ -39,3 +39,4 @@ jspm_packages
 
 dist/demo.js
 dist/demo.js.map
+dist/index.html
