@@ -3,29 +3,6 @@ import {Table} from "./../src/index";
 
 var tableExampleData = {
   example: {
-    extraHeaders: [
-      {
-        label: "Arrival Date",
-        rowSpan: 2,
-        style: {
-          textAlign: "center",
-        }
-      },
-      {
-        label: "Market Demand",
-        rowSpan: 2,
-        style: {
-          textAlign: "center"
-        }
-      },
-      {
-        label: "Channels",
-        colSpan: 2,
-        style: {
-          textAlign: "center"
-        }
-      }
-    ],
     columns: [
       {
         id: "category",
@@ -62,7 +39,7 @@ var tableExampleData = {
         },
         popover: {
           value: function () {
-            return <h1>This is Sample Popover</h1>;
+            return <p>Link to something</p>;
           },
           popoverProps: {
             title: "Popover",
@@ -72,15 +49,23 @@ var tableExampleData = {
           },
           overlayProps: {
             trigger: "click"
+          },
+          shouldShowPopover: function (cellData) {
+            if (cellData === null || cellData === undefined) {
+              return false;
+            } else {
+              return true;
+            }
           }
-        }
+        },
+
       },
       {
         id: "lastDayPrice",
         label: "lastDayPrice",
         tooltip: {
           value: function () {
-            return <h1>This is Sample Popover</h1>;
+            return <p>Link</p>;
           },
           tooltipProps: {},
           overlayProps: {}
@@ -98,6 +83,11 @@ var tableExampleData = {
         category: "sabji",
         name: "Aam",
         price: 90,
+        lastDayPrice: 100
+      }, {
+        category: "roti",
+        name: "Aam",
+        price: null,
         lastDayPrice: 100
       }
     ]

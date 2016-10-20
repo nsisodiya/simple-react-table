@@ -326,6 +326,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(2);
@@ -415,7 +417,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function render() {
 	      var _this2 = this;
 	
-	      //console.log(Object.assign({}, this.getStyles(), {textAlign: "center", wordWrap: "break-word"}));
 	      return _react2.default.createElement(
 	        _materialUi.TableRowColumn,
 	        { styleName: "container",
@@ -440,15 +441,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	              )
 	            );
 	          } else if (_this2.props.popover !== null) {
-	            return _react2.default.createElement(
-	              _MaterialPopover2.default,
-	              { style: _this2.props.popover.popoverProps.style, overlay: _react2.default.createElement(
-	                  "div",
-	                  null,
-	                  _util2.default.iff(typeof _this2.props.popover.value === "function", _this2.props.popover.value(_this2.props.data, _this2.props.dataRow, _this2.props.allData, _this2.props.columns, _this2.props.rowIndex), _this2.props.popover.value)
-	                ) },
-	              _this2.getData()
-	            );
+	            if (_this2.props.popover.shouldShowPopover === undefined || _this2.props.popover.shouldShowPopover(_this2.props.data, _this2.props.dataRow, _this2.props.allData, _this2.props.columns, _this2.props.rowIndex)) {
+	              return _react2.default.createElement(
+	                _MaterialPopover2.default,
+	                _extends({}, _this2.props.popover.popoverProps, { overlay: _react2.default.createElement(
+	                    "span",
+	                    null,
+	                    _util2.default.iff(typeof _this2.props.popover.value === "function", _this2.props.popover.value(_this2.props.data, _this2.props.dataRow, _this2.props.allData, _this2.props.columns, _this2.props.rowIndex), _this2.props.popover.value)
+	                  ) }),
+	                _this2.getData()
+	              );
+	            } else {
+	              return _this2.getData();
+	            }
 	          } else {
 	            return _this2.getData();
 	          }
@@ -575,7 +580,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
+	        "span",
 	        { onClick: this.handleClick },
 	        _react2.default.createElement(
 	          _materialUi.Popover,
@@ -598,8 +603,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 	
 	MaterialPopover.defaultProps = {
-	  anchorOrigin: { horizontal: "left", vertical: "bottom" },
-	  targetOrigin: { horizontal: "left", vertical: "top" }
+	  anchorOrigin: { horizontal: "right", vertical: "center" },
+	  targetOrigin: { horizontal: "left", vertical: "center" }
 	};
 	MaterialPopover.propTypes = {
 	  overlay: _react2.default.PropTypes.any,

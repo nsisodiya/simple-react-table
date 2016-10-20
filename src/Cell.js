@@ -54,7 +54,6 @@ class CellComponent extends Component {
   }
 
   render() {
-    //console.log(Object.assign({}, this.getStyles(), {textAlign: "center", wordWrap: "break-word"}));
     return (
       <TableRowColumn styleName="container"
         className={this.getThirdPartyClass()}
@@ -78,13 +77,17 @@ class CellComponent extends Component {
                 }</span>
               </div>;
             } else if (this.props.popover !== null) {
-              return <MaterialPopover style={this.props.popover.popoverProps.style} overlay={
-                  <div>
+              if (this.props.popover.shouldShowPopover === undefined || this.props.popover.shouldShowPopover(this.props.data, this.props.dataRow, this.props.allData, this.props.columns, this.props.rowIndex)) {
+                return <MaterialPopover {...this.props.popover.popoverProps} overlay={
+                  <span>
                   {
                     util.iff(typeof this.props.popover.value === "function", this.props.popover.value(this.props.data, this.props.dataRow, this.props.allData, this.props.columns, this.props.rowIndex), this.props.popover.value)
-                  }</div>}>
+                  }</span>}>
                 {this.getData()}
               </MaterialPopover>;
+              } else {
+                return this.getData();
+              }
             } else {
               return this.getData();
             }

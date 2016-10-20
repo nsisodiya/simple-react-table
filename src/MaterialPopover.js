@@ -30,7 +30,7 @@ class MaterialPopover extends Component {
 
   render() {
     return (
-      <div onClick={this.handleClick}>
+      <span onClick={this.handleClick}>
           <Popover
             open={this.state.open}
             anchorEl={this.state.anchorEl}
@@ -42,13 +42,13 @@ class MaterialPopover extends Component {
             {this.props.overlay}
         </Popover>
         {this.props.children}
-      </div>
+      </span>
     );
   }
 }
 MaterialPopover.defaultProps = {
-  anchorOrigin: {horizontal: "left", vertical: "bottom"},
-  targetOrigin: {horizontal: "left", vertical: "top"}
+  anchorOrigin: {horizontal: "right", vertical: "center"},
+  targetOrigin: {horizontal: "left", vertical: "center"}
 };
 MaterialPopover.propTypes = {
   overlay: React.PropTypes.any,
