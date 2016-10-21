@@ -143,8 +143,11 @@ class TableComponent extends Component {
     //console.log("%c Table Component -> Render ", "background: black; color: pink");
     return (
       <div styleName="container">
-        <Table style={this.props.style} bodyStyle={{overflow: "visible"}} striped={this.props.striped} bordered={this.props.bordered} condensed={this.props.condensed}
-          hover={this.props.hover} responsive={this.props.responsive} styleName="table-component">
+        <Table
+          style={this.props.style}
+          bodyStyle={{overflow: "visible"}}
+          striped={this.props.striped}
+          styleName="table-component">
           {this.getHeader()}
           {this.getBody()}
         </Table>
@@ -156,24 +159,16 @@ TableComponent.defaultProps = {
   extraHeaders: [],
   data: [],
   striped: true,
-  bordered: true,
-  condensed: true,
-  hover: true,
-  responsive: true,
   columns: []
 };
 TableComponent.propTypes = {
+  style: React.PropTypes.object,
   striped: React.PropTypes.bool,
-  bordered: React.PropTypes.bool,
-  condensed: React.PropTypes.bool,
-  hover: React.PropTypes.bool,
-  responsive: React.PropTypes.bool,
   showHeader: React.PropTypes.bool,
   rowNumber: React.PropTypes.bool,
   extraHeaders: React.PropTypes.array,
   data: React.PropTypes.array,
   columns: React.PropTypes.array,
-  style: React.PropTypes.object,
   columnsWithData: React.PropTypes.array
 };
 export default TableComponent;
